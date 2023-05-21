@@ -137,13 +137,6 @@ npx prisma studio
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- USAGE EXAMPLES -->
-
-## Usage
-
-Although only a proof-of-concept now, this application is setup to quickly build out CRUD operations for related data,<br>
-and rapid front-end development with Tailwind components.
-
 ### Api Endpoints
 
 - GET /players - will retrieve the two test players currently in the database
