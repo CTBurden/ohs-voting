@@ -8,4 +8,6 @@ export default {
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
   coverageDirectory: '../../coverage/apps/api',
+  autoMock: false,
+  setupFiles: ['./__mocks__/jest.ts'],
 };

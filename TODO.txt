@@ -1,0 +1,17 @@
+TODO
+ui
+
+api
+- error handling
+- authentication
+
+ci 
+- github actions pipelines for ui and api
+
+CHORES
+- unit tests
+- consolidate npm scripts
+- documentation
+
+
+
