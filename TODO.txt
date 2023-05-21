@@ -1,0 +1,13 @@
+ui
+- unit Tests
+- comments
+- ui library decision
+
+api
+- unit testing
+- error handling
+- comments
+- authentication
+
+ci 
+- github actions pipelines for ui and api
