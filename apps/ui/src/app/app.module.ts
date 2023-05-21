@@ -1,17 +1,16 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
-import { appRoutes } from './app.routes';
-import { NxWelcomeComponent } from './nx-welcome.component';
+import { HttpClientModule } from '@angular/common/http';
+import { HeaderComponent } from './header/header.component';
+import { HomeComponent } from './home/home.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
-  declarations: [AppComponent, NxWelcomeComponent],
-  imports: [
-    BrowserModule,
-    RouterModule.forRoot(appRoutes, { initialNavigation: 'enabledBlocking' }),
-  ],
+  declarations: [AppComponent, HeaderComponent, HomeComponent],
+  imports: [AppRoutingModule, BrowserModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}
