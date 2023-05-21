@@ -10,7 +10,9 @@
     "lint-ui": "nx lint ui",
     "lint-api": "nx lint api",
     "test-ui": "nx test ui",
-    "test-api": "nx test api"
+    "test-api": "nx test api",
+    "e2e-ui": "nx serve ui && nx serve api && nx e2e ui-e2e",
+    "e2e-api": "nx serve api & nx e2e api-e2e"
   },
   "private": true,
   "dependencies": {
