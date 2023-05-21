@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common';
 
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { PlayersService, PlayersController } from '@ohs-voting/players';
+import { AppController } from './controllers/app.controller';
+import { AppService } from './api-services/app.service';
+import { PlayersService } from './api-services/players/players.service';
+import { PlayersController } from './controllers/players/players.controller';
 
 @Module({
   imports: [],
