@@ -14,7 +14,7 @@
     <img src="" alt="Logo" width="80" height="80">
   </a> -->
 
-  <h1 align="center">OHS Voting</h3>
+  <h2 align="center">OHS Voting</h3>
 
   <!-- <p align="center">
     <br />
