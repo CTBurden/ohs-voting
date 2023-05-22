@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PlayersService } from '../players-service/players.service';
-import { players } from '@prisma/client';
+import { Player } from '@prisma/client';
 
 @Component({
   selector: 'ohs-voting-home',
@@ -8,12 +8,12 @@ import { players } from '@prisma/client';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  players!: players[];
+  players!: Player[];
 
   constructor(public playersService: PlayersService) {}
 
   ngOnInit(): void {
-    this.playersService.getPlayers().subscribe((players: players[]) => {
+    this.playersService.getPlayers().subscribe((players: Player[]) => {
       this.players = players;
     });
   }

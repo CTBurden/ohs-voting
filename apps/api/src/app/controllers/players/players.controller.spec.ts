@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { PlayersController } from './players.controller';
-import { players } from '@prisma/client';
+import { Player } from '@prisma/client';
 import prisma from '../../client';
 
 describe('PlayersController', () => {
@@ -9,28 +9,28 @@ describe('PlayersController', () => {
     default: prisma, // Use the mock Prisma client
   }));
   let playersController: PlayersController;
-  const mockPlayers: players[] = [
+  const mockPlayers: Player[] = [
     {
       id: 1,
       first_name: 'test',
       last_name: 'test',
-      position: 'test',
-      ranking: 1,
+      ranking: '1',
+      division_id: 1,
     },
     {
       id: 2,
       first_name: 'test',
       last_name: 'test',
-      position: 'test',
-      ranking: 2,
+      ranking: '2',
+      division_id: 2,
     },
   ];
-  const mockPlayer: players = {
+  const mockPlayer: Player = {
     id: 1,
     first_name: 'test',
     last_name: 'test',
-    position: 'test',
-    ranking: 1,
+    ranking: '1',
+    division_id: 1,
   };
   const mockError = new Error('Mock error');
   const mockId = 1;
@@ -50,44 +50,44 @@ describe('PlayersController', () => {
 
   describe('getPlayers', () => {
     it('should return an array of players', async () => {
-      jest.spyOn(prisma.players, 'findMany').mockResolvedValue(mockPlayers);
+      jest.spyOn(prisma.player, 'findMany').mockResolvedValue(mockPlayers);
 
       const result = await playersController.getPlayers();
 
       expect(result).toEqual(mockPlayers);
-      expect(prisma.players.findMany).toHaveBeenCalled();
+      expect(prisma.player.findMany).toHaveBeenCalled();
     });
 
     it('should handle errors and log them', async () => {
-      jest.spyOn(prisma.players, 'findMany').mockRejectedValue(mockError);
+      jest.spyOn(prisma.player, 'findMany').mockRejectedValue(mockError);
       jest.spyOn(console, 'log').mockImplementation();
 
       await playersController.getPlayers();
 
-      expect(prisma.players.findMany).toHaveBeenCalled();
+      expect(prisma.player.findMany).toHaveBeenCalled();
       expect(console.log).toHaveBeenCalledWith(mockError);
     });
   });
 
   describe('createPlayer', () => {
     it('should create a new player', async () => {
-      jest.spyOn(prisma.players, 'create').mockResolvedValue(mockPlayer);
+      jest.spyOn(prisma.player, 'create').mockResolvedValue(mockPlayer);
 
       const result = await playersController.createPlayer(mockPlayer);
 
       expect(result).toEqual(mockPlayer);
-      expect(prisma.players.create).toHaveBeenCalledWith({
+      expect(prisma.player.create).toHaveBeenCalledWith({
         data: mockPlayer,
       });
     });
 
     it('should handle errors and log them', async () => {
-      jest.spyOn(prisma.players, 'create').mockRejectedValue(mockError);
+      jest.spyOn(prisma.player, 'create').mockRejectedValue(mockError);
       jest.spyOn(console, 'log').mockImplementation();
 
       await playersController.createPlayer(mockPlayer);
 
-      expect(prisma.players.create).toHaveBeenCalledWith({
+      expect(prisma.player.create).toHaveBeenCalledWith({
         data: mockPlayer,
       });
       expect(console.log).toHaveBeenCalledWith(mockError);
@@ -96,23 +96,23 @@ describe('PlayersController', () => {
 
   describe('getPlayerById', () => {
     it('should return a player by ID', async () => {
-      jest.spyOn(prisma.players, 'findUnique').mockResolvedValue(mockPlayer);
+      jest.spyOn(prisma.player, 'findUnique').mockResolvedValue(mockPlayer);
 
       const result = await playersController.getPlayerById(mockId);
 
       expect(result).toEqual(mockPlayer);
-      expect(prisma.players.findUnique).toHaveBeenCalledWith({
+      expect(prisma.player.findUnique).toHaveBeenCalledWith({
         where: { id: mockId },
       });
     });
 
     it('should handle errors and log them', async () => {
-      jest.spyOn(prisma.players, 'findUnique').mockRejectedValue(mockError);
+      jest.spyOn(prisma.player, 'findUnique').mockRejectedValue(mockError);
       jest.spyOn(console, 'log').mockImplementation();
 
       await playersController.getPlayerById(mockId);
 
-      expect(prisma.players.findUnique).toHaveBeenCalledWith({
+      expect(prisma.player.findUnique).toHaveBeenCalledWith({
         where: { id: mockId },
       });
       expect(console.log).toHaveBeenCalledWith(mockError);
@@ -121,24 +121,24 @@ describe('PlayersController', () => {
 
   describe('updatePlayer', () => {
     it('should update a player', async () => {
-      jest.spyOn(prisma.players, 'update').mockResolvedValue(mockPlayer);
+      jest.spyOn(prisma.player, 'update').mockResolvedValue(mockPlayer);
 
       const result = await playersController.updatePlayer(mockId, mockPlayer);
 
       expect(result).toEqual(mockPlayer);
-      expect(prisma.players.update).toHaveBeenCalledWith({
+      expect(prisma.player.update).toHaveBeenCalledWith({
         where: { id: mockId },
         data: mockPlayer,
       });
     });
 
     it('should handle errors and log them', async () => {
-      jest.spyOn(prisma.players, 'update').mockRejectedValue(mockError);
+      jest.spyOn(prisma.player, 'update').mockRejectedValue(mockError);
       jest.spyOn(console, 'log').mockImplementation();
 
       await playersController.updatePlayer(mockId, mockPlayer);
 
-      expect(prisma.players.update).toHaveBeenCalledWith({
+      expect(prisma.player.update).toHaveBeenCalledWith({
         where: { id: mockId },
         data: mockPlayer,
       });
@@ -148,23 +148,23 @@ describe('PlayersController', () => {
 
   describe('deletePlayer', () => {
     it('should delete a player', async () => {
-      jest.spyOn(prisma.players, 'delete').mockResolvedValue(mockPlayer);
+      jest.spyOn(prisma.player, 'delete').mockResolvedValue(mockPlayer);
 
       const result = await playersController.deletePlayer(mockId);
 
       expect(result).toEqual(mockPlayer);
-      expect(prisma.players.delete).toHaveBeenCalledWith({
+      expect(prisma.player.delete).toHaveBeenCalledWith({
         where: { id: mockId },
       });
     });
 
     it('should handle errors and log them', async () => {
-      jest.spyOn(prisma.players, 'delete').mockRejectedValue(mockError);
+      jest.spyOn(prisma.player, 'delete').mockRejectedValue(mockError);
       jest.spyOn(console, 'log').mockImplementation();
 
       await playersController.deletePlayer(mockId);
 
-      expect(prisma.players.delete).toHaveBeenCalledWith({
+      expect(prisma.player.delete).toHaveBeenCalledWith({
         where: { id: mockId },
       });
       expect(console.log).toHaveBeenCalledWith(mockError);
