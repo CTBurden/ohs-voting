@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { players } from '@prisma/client';
+import { Player } from '@prisma/client';
 import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
@@ -9,9 +9,9 @@ export class PlayersService {
 
   constructor(private readonly http: HttpClient) {}
 
-  public getPlayers(): Observable<players[]> {
+  public getPlayers(): Observable<Player[]> {
     {
-      return this.http.get<players[]>(`${this.API_URL}/players`);
+      return this.http.get<Player[]>(`${this.API_URL}/players`);
     }
   }
 }
